@@ -1,6 +1,6 @@
 # 1. Define Versions (Visible to Renovate)
 # renovate: datasource=docker depName=moghtech/komodo-periphery
-ARG KOMODO_VERSION=1.16.2
+ARG KOMODO_VERSION=1.19.5
 
 # renovate: datasource=github-releases depName=getsops/sops
 ARG SOPS_VERSION=v3.11.0
