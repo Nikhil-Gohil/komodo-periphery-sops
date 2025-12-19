@@ -36,7 +36,8 @@ RUN curl -f -L "https://github.com/FiloSottile/age/releases/download/${AGE_VERSI
 RUN echo '#!/bin/sh\n\
 if [ -f ".env.enc" ]; then\n\
     echo "🔐 Found .env.enc, decrypting..."\n\
-    sops --decrypt .env.enc > .env\n\
+    # Explicitly convert YAML (encrypted) back to Dotenv (decrypted)\n\
+    sops --decrypt --input-type yaml --output-type dotenv .env.enc > .env\n\
     if [ $? -eq 0 ]; then echo "✅ Decryption successful."; else echo "❌ Failed!"; exit 1; fi\n\
 else\n\
     echo "ℹ️ No .env.enc found, skipping."\n\
