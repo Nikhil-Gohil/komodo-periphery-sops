@@ -3,7 +3,7 @@
 ARG KOMODO_VERSION=1.16.2
 
 # renovate: datasource=github-releases depName=getsops/sops
-ARG SOPS_VERSION=v3.9.0
+ARG SOPS_VERSION=v3.11.0
 
 # renovate: datasource=github-releases depName=FiloSottile/age
 ARG AGE_VERSION=v1.1.0
