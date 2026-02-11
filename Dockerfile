@@ -6,7 +6,7 @@ ARG KOMODO_VERSION=1.19.5
 ARG SOPS_VERSION=v3.11.0
 
 # renovate: datasource=github-releases depName=FiloSottile/age
-ARG AGE_VERSION=v1.2.1
+ARG AGE_VERSION=v1.3.1
 
 # 2. Start the Build
 FROM moghtech/komodo-periphery:${KOMODO_VERSION}
