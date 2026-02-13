@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       # Extract the version directly from Dockerfile
       # Ensures tag always matches what is defined in code.
