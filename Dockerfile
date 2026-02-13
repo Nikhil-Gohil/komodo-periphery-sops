@@ -11,7 +11,7 @@ ARG AGE_VERSION=v1.3.1
 # 2. Start the Build
 FROM moghtech/komodo-periphery:${KOMODO_VERSION}
 
-# 🔴 CRITICAL FIX: Re-declare these to use them inside the image
+# Re-declare these to use them inside the image, fails otherwise
 ARG SOPS_VERSION
 ARG AGE_VERSION
 
@@ -32,19 +32,19 @@ RUN curl -f -L "https://github.com/FiloSottile/age/releases/download/${AGE_VERSI
     && chmod +x /usr/local/bin/age \
     && rm -rf age.tar.gz age
 
-# Bake the scripts
+# Add custom scripts
 RUN echo '#!/bin/sh\n\
 if [ -f ".env.enc" ]; then\n\
-    echo "🔐 Found .env.enc, decrypting..."\n\
+    echo "Found .env.enc, decrypting..."\n\
     # Explicitly convert YAML (encrypted) back to Dotenv (decrypted)\n\
     sops --decrypt --input-type yaml --output-type dotenv .env.enc > .env\n\
-    if [ $? -eq 0 ]; then echo "✅ Decryption successful."; else echo "❌ Failed!"; exit 1; fi\n\
+    if [ $? -eq 0 ]; then echo "Decryption successful."; else echo "Failed!"; exit 1; fi\n\
 else\n\
-    echo "ℹ️ No .env.enc found, skipping."\n\
+    echo "No .env.enc found, skipping."\n\
 fi' > /usr/local/bin/komodo-pre-deploy && chmod +x /usr/local/bin/komodo-pre-deploy
 
 RUN echo '#!/bin/sh\n\
 if [ -f ".env" ] && [ -f ".env.enc" ]; then\n\
-    echo "🧹 Cleaning up .env..."\n\
+    echo "Cleaning up .env..."\n\
     rm .env\n\
 fi' > /usr/local/bin/komodo-post-deploy && chmod +x /usr/local/bin/komodo-post-deploy
