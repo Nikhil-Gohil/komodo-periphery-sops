@@ -73,6 +73,6 @@ jobs:
         uses: softprops/action-gh-release@v3
         with:
           tag_name: v${{ steps.version.outputs.KOMODO_VERSION }}
-          name: Release v${{ steps.version.outputs.KOMODO_VERSION }}
+          name: Periphery SOPS V${{ steps.version.outputs.KOMODO_VERSION }}
           generate_release_notes: true
           make_latest: true
