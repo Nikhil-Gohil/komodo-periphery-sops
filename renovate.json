@@ -1,8 +1,10 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended",
+    "config:recommended"
   ],
+  "assignees": ["Nikhil-Gohil"],
+  "reviewers": ["Nikhil-Gohil"],
   "customManagers": [
     {
       "customType": "regex",
@@ -15,7 +17,8 @@
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "automerge": true
+      "automerge": true,
+      "ignoreTests": true
     }
   ]
 }
